@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stable Diffusion</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    <style>
+        .col-md-6{
+            padding: 12px 13px;
+        }
+        .alert{
+            margin-top: 13px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container my-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+               {% for category, message in messages %}
+                    <div class="alert alert-{{category}} alert-dismissible">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <strong>{{ message }}!</strong>
+                    </div>
+               {% endfor %}
+         {% endif %}
+        {% endwith %}
+        <h2>Stable Diffusion</h2>
+        <form class="my-3" action="/" method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <textarea type="text" name="prompts" class="form-control"
+                              placeholder='["a beautiful forest by Asher Brown Durand, trending on Artstation", "a beautiful portrait of a woman by Artgerm, trending on Artstation"]'
+                              aria-label="Prompts" rows="6" required></textarea>
+              </div>
+                <div class="col-md-6">
+                    <textarea type="text" name="animation_prompt" class="form-control"
+                              placeholder='{0: "a beautiful apple, trending on Artstation",20: "a beautiful banana, trending on Artstation"}'
+                              aria-label="Animation Prompt" rows="6" required></textarea>
+              </div>
+                <div class="col-md-6">
+                 <input type="text" name="max_frames" class="form-control"
+                        placeholder="Max Frames(Integer only)" aria-label="Max Frames(Integer only)" required>
+               </div>
+                <div class="col-md-6">
+                <input type="text" name="animation_mode" class="form-control"
+                       placeholder="Animation Mode(2D, 3D)" aria-label="Animation Mode(2D, 3D)" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    </body>
+</html>
