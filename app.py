@@ -1,6 +1,6 @@
 import ast
 import logging
-from stable import run
+# from stable import run
 from flask import Flask, render_template, request, redirect, flash
 
 logger = logging.getLogger(__name__)
@@ -16,7 +16,7 @@ def index():
             max_frames = int(request.form["max_frames"])
             animation_mode = request.form["animation_mode"]
             flash("script run successfully!!!", "success")
-            run(prompts, animation_prompt, max_frames, animation_mode)
+#             run(prompts, animation_prompt, max_frames, animation_mode)
         except Exception as e:
             logger.error(e)
             flash(str(e) + "(Invalid inputs Passed Try Again!!!)", "danger")
